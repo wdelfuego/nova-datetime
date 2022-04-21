@@ -1,0 +1,29 @@
+{
+    "name": "wdelfuego/nova-datetime",
+    "description": "Makes working with DateTime fields in Laravel's Nova 4 easier",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "laravel/nova": "^4.2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wdelfuego\\Nova\\DateTime\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Willem Vervuurt",
+            "email": "willem@studiodelfuego.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wdelfuego\\Nova\\DateTime\\ServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    }
+}
