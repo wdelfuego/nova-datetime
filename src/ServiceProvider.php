@@ -4,6 +4,7 @@ namespace Wdelfuego\Nova\DateTime;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravel\Nova\Fields;
+use DateTimeInterface;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -26,7 +27,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         // Adds the withDateFormat macro to DateFields
         Fields\DateTime::macro('withDateFormat', function (string $format) {
-            return $this->displayUsing(fn ($d) => $d->format($format));
+            return $this->displayUsing(fn ($d) => ($d instanceof DateTimeInterface) ? $d->format($format) : '');
         });
     }
 }
