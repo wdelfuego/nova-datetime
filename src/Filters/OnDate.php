@@ -2,6 +2,7 @@
 
 namespace Wdelfuego\Nova\DateTime\Filters;
 
+use DateTimeInterface;
 use Illuminate\Support\Carbon;
 use Laravel\Nova\Filters\DateFilter;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -31,7 +32,12 @@ class OnDate extends DateFilter
     
     public function apply(NovaRequest $request, $query, $value)
     {
-        return $query->whereDate($this->column, $this->operator, Carbon::parse($value));
+        return $this->modulateQuery($query, Carbon::parse($value));
+    }
+    
+    public function modulateQuery($query, DateTimeInterface $withDate)
+    {
+        return $query->whereDate($this->column, $this->operator, $withDate);
     }
     
     public function default()
