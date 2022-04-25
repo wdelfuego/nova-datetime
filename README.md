@@ -1,4 +1,4 @@
-This package adds a DateTime field with support for a global `DateTime` format, syntactic sugar for formatting individual `DateTime` fields, adds powerful date filters for Index views and can grow to feature more extensions or improvements with regard to `DateTime` fields and logic in Laravel's [Nova 4](https://nova.laravel.com).
+This package adds a DateTime field with support for a global `DateTime` format, syntactic sugar for formatting individual `DateTime` fields and powerful date filters for Index views. It can serve as a base for more extensions and improvements with regard to `DateTime` fields and logic in Laravel's [Nova 4](https://nova.laravel.com).
 
 ## Installation
 ```sh
