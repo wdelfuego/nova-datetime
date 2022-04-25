@@ -9,8 +9,28 @@ composer require wdelfuego/nova-datetime
 
 The examples below assume that the Eloquent model used for the Nova resource has an attribute named 'attribute'.
 
-### Formatting `DateTime` fields
-The `withDateFormat` helper is added automatically to all `DateTime` fields in your project and allows you to directly set the format you want the field to be displayed in:
+### Formatting `DateTime` fields globally
+1. First, publish this package's config file by running:
+    ```sh
+    php artisan vendor:publish --provider="Wdelfuego\Nova\DateTime\ServiceProvider"
+    ```
+2. Then, set the format you want to use for all of your `DateTime` fields in `config/nova-datetime.php`, for example:
+
+    ```
+    return [
+
+        'globalFormat' => 'Y-M-d H:i:s',
+
+    ];
+    ```
+3. In your Nova resource, replace all instances of `Laravel\Nova\Fields\DateTime` with instances of `Wdelfuego\Nova\DateTime\Fields\DateTime` by adding this use statement:
+
+   ```
+   use Wdelfuego\Nova\DateTime\Fields\DateTime;
+   ```
+
+### Formatting individual `DateTime` fields
+The `withDateFormat` helper is added automatically to all `DateTime` fields in your project (including Nova's own, so you don't have to use a custom DateTime field) and allows you to directly set the format you want the field to be displayed in:
 
 ```
     DateTime::make(__('Localized label'), 'attribute')
