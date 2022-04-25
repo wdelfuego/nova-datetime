@@ -1,4 +1,4 @@
-This package adds syntactic sugar for formatting DateTime fields, adds powerful date filters for Index views and can grow to feature more extensions or improvements with regard to `DateTime` fields and logic in Laravel's [Nova 4](https://nova.laravel.com).
+This package adds a DateTime field with support for a global `DateTime` format, syntactic sugar for formatting individual `DateTime` fields, adds powerful date filters for Index views and can grow to feature more extensions or improvements with regard to `DateTime` fields and logic in Laravel's [Nova 4](https://nova.laravel.com).
 
 ## Installation
 ```sh
@@ -6,8 +6,6 @@ composer require wdelfuego/nova-datetime
 ```
   
 ## Usage
-
-The examples below assume that the Eloquent model used for the Nova resource has an attribute named 'attribute'.
 
 ### Formatting `DateTime` fields globally
 1. First, publish this package's config file by running:
@@ -18,9 +16,7 @@ The examples below assume that the Eloquent model used for the Nova resource has
 
     ```
     return [
-
         'globalFormat' => 'Y-M-d H:i:s',
-
     ];
     ```
 3. In your Nova resource, replace all instances of `Laravel\Nova\Fields\DateTime` with instances of `Wdelfuego\Nova\DateTime\Fields\DateTime` by adding this use statement:
@@ -30,6 +26,8 @@ The examples below assume that the Eloquent model used for the Nova resource has
    ```
 
 ### Formatting individual `DateTime` fields
+The examples below assume that the Eloquent model used for the Nova resource has an attribute named 'attribute'.
+
 The `withDateFormat` helper is added automatically to all `DateTime` fields in your project (including Nova's own, so you don't have to use a custom DateTime field) and allows you to directly set the format you want the field to be displayed in:
 
 ```
