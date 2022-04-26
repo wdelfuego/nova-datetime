@@ -2,6 +2,8 @@
 
 namespace Wdelfuego\Nova\DateTime\Fields;
 
+use DateTimeInterface;
+use Illuminate\Support\Carbon;
 use Laravel\Nova\Fields\DateTime as BaseField;
 
 class DateTime extends BaseField
@@ -22,6 +24,26 @@ class DateTime extends BaseField
     public static function setGlobalFormat(string $format = null) : void
     {
         self::$globalFormat = $format;
+    }
+    
+    /**
+     * Returns the function that, given a date $format, will set the
+     * display resolution function of the Field it's macro'd to 
+     * to a function that applies the specified $format in the current locale
+     *
+     * @return callable
+     */
+    public static function withDateFormatFunction() : callable
+    {
+        return function (string $format) {
+            return $this->displayUsing(fn ($d) => 
+                ($d instanceof Carbon) 
+                    ? $d->translatedFormat($format) 
+                    : (($d instanceof DateTimeInterface) 
+                        ? $d->format($format) 
+                        : '')
+                );
+        };
     }
     
     /**

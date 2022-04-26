@@ -2,7 +2,6 @@
 
 namespace Wdelfuego\Nova\DateTime;
 
-use DateTimeInterface;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravel\Nova\Fields as NovaFields;
 use Wdelfuego\Nova\DateTime\Fields\DateTime;
@@ -34,9 +33,7 @@ class ServiceProvider extends BaseServiceProvider
         ]);
         
         // Add the withDateFormat macro to normal DateFields
-        NovaFields\DateTime::macro('withDateFormat', function (string $format) {
-            return $this->displayUsing(fn ($d) => ($d instanceof DateTimeInterface) ? $d->format($format) : '');
-        });
+        NovaFields\DateTime::macro('withDateFormat', DateTime::withDateFormatFunction());
         
         // Set the global datetime format for our own DateFields from config
         DateTime::setGlobalFormat(config('nova-datetime.globalFormat'));
