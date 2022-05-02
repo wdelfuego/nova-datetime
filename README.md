@@ -25,6 +25,10 @@ composer require wdelfuego/nova-datetime
    use Wdelfuego\Nova\DateTime\Fields\DateTime;
    ```
 
+This allows you to apply the global format to all `DateTime` fields in your own Nova resources automatically.
+
+To automatically apply the global `DateTime` format to the 'Action Happened at' column of the action events in your resources' action logs as well, install the [wdelfuego/nova-actions](https://github.com/wdelfuego/nova-actions) package.
+
 ### Formatting individual `DateTime` fields
 The examples below assume that the Eloquent model used for the Nova resource has an attribute named 'attribute'.
 
