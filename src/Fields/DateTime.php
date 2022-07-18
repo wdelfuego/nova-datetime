@@ -5,6 +5,7 @@ namespace Wdelfuego\Nova\DateTime\Fields;
 use DateTimeInterface;
 use Illuminate\Support\Carbon;
 use Laravel\Nova\Fields\DateTime as BaseField;
+use DateTimeZone;
 
 class DateTime extends BaseField
 {
@@ -36,11 +37,15 @@ class DateTime extends BaseField
     public static function withDateFormatFunction() : callable
     {
         return function (string $format) {
-            return $this->displayUsing(fn ($d) => 
-                ($d instanceof Carbon) 
-                    ? $d->translatedFormat($format) 
-                    : (($d instanceof DateTimeInterface) 
-                        ? $d->format($format) 
+            return $this->displayUsing(fn ($d) =>
+                ($d instanceof Carbon)
+                    ? (config('app.timezone')
+                        ? $d->setTimezone(new DateTimeZone(config('app.timezone')))->translatedFormat($format)
+                        : $d->translatedFormat($format))
+                    : (($d instanceof DateTimeInterface)
+                        ? (config('app.timezone')
+                            ? $d->setTimezone(new DateTimeZone(config('app.timezone')))->format($format)
+                            : $d->format($format))
                         : '')
                 );
         };
