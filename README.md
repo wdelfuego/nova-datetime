@@ -1,5 +1,10 @@
 This package adds a DateTime field with support for a global `DateTime` format, syntactic sugar for formatting individual `DateTime` fields and powerful date filters for Index views. It can serve as a base for more extensions and improvements with regard to `DateTime` fields and logic in Laravel's [Nova 4](https://nova.laravel.com).
 
+# Package is abandoned
+As of 2025, I have moved my development efforts to [Filament](https://filamentphp.com) and am no longer using or working on this package.
+
+You are free to make and distribute modified versions of this package publicly as long as you distribute it for free, as a stand-alone package and under the same dual licensing model.
+
 ## Installation
 ```sh
 composer require wdelfuego/nova-datetime
